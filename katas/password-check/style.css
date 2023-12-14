@@ -1,0 +1,67 @@
+/*
+
+ Style the app as visible on the screenshots and in the video
+ Use lightsalmon as background color
+ Use Lobster for Headings and Open Sans for all other text
+ Use Open Sans also for inputs and buttons
+ Use a one column layout below 700px screen width
+ Use a two column layout above 700px screen width
+ Use emojis (either from your emoji keyboard or emojicopy) for valid or invalid checks
+ Inputs and buttons should have
+ A black border
+ A 2px border radius
+
+ */
+
+html,
+body {
+  background: lightsalmon;
+  font-family: "Open Sans", arial, sans-serif;
+  font-size: 1.25rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lobster", serif;
+  color: #fff;
+  text-align: center;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+@media screen and (width < 700px) {
+  section {
+    margin: 2rem;
+    display: block;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+button,
+input {
+  border: 2px solid #000;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  appearance: none;
+  border: 0;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}

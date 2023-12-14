@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="todo-container">
+        <h1>TODO App</h1>
+        <h2 class="claim">
+          Getting <span class="count-task">1</span> things done…
+        </h2>
+        <form class="todo-form">
+          <div class="form-wrapper">
+            <input
+              type="text"
+              name="description"
+              title="Task description"
+              placeholder="Start your list!"
+              autofocus
+            />
+            <button title="add new task" type="submit">add</button>
+            <button title="clear list" class="clear-btn">Clear</button>
+            <div class="filter-options">
+              <label>
+                <input
+                  type="radio"
+                  title="show all tasks"
+                  name="filter"
+                  value="all"
+                  checked
+                />
+                All
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  title="show done tasks"
+                  name="filter"
+                  value="done"
+                />
+                Done
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  title="show open tasks"
+                  name="filter"
+                  value="open"
+                />
+                Open
+              </label>
+            </div>
+          </div>
+        </form>
+        <ul class="todo-list">
+          <!-- dynamic content -->
+        </ul>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
