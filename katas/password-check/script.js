@@ -1,20 +1,78 @@
 "use strict";
 
-/*
-Add these five checks
- Passwords are equal
- Password contains at least one lower case character
- Password contains at least one upper case character
- Password contains at least one number
- Passwort is at least 10 characters long
- The first check is always the "equality check" of both passwords
- If this first check fails all other checks will be failed automatically
- Run all checks whenever the user types into any of the password inputs
- Add a button that toggles the text in the password fields and the label of the button itself
- If the passwords are hidden the text of the button is "Show Passwords"
- If the passwords are visible the text of the button is "Hide Passwords"
+const form = document.querySelector("#form");
+const firstInputPassword = document.querySelector(".first-input-password");
+const secondInputPassword = document.querySelector(".second-input-password");
+const button = document.querySelector("button");
 
+const checkSpanEqual = document.querySelector(".check-equal");
+const checkSpanLower = document.querySelector(".check-lower");
+const checkSpanUpper = document.querySelector(".check-upper");
+const checkSpanNumber = document.querySelector(".check-number");
+const checkSpanLength = document.querySelector(".check-length");
 
- Change html pass to text
- 
- */
+/*    EVENT LISTENER - Show / Hide Passwords
+========================================================================== */
+
+button.addEventListener("click", function () {
+  if (button.innerText === "Show Passwords") {
+    firstInputPassword.type = "text";
+    secondInputPassword.type = "text";
+    button.innerText = "Hide Passwords";
+  } else {
+    firstInputPassword.type = "password";
+    secondInputPassword.type = "password";
+    button.innerText = "Show Passwords";
+  }
+});
+
+/*    EVENT LISTENER - Change First Input Password
+========================================================================== */
+firstInputPassword.addEventListener("input", equalCheck);
+secondInputPassword.addEventListener("input", equalCheck);
+
+function equalCheck() {
+  if (firstInputPassword.value !== secondInputPassword.value) {
+    checkSpanEqual.innerText = "❌";
+    checkSpanLower.innerText = "❌";
+    checkSpanUpper.innerText = "❌";
+    checkSpanNumber.innerText = "❌";
+    checkSpanLength.innerText = "❌";
+  } else {
+    checkSpanEqual.innerText = "✅";
+
+    if (checklowercase(firstInputPassword.value)) {
+      checkSpanLower.innerText = "✅";
+    }
+    if (checkUppercase(firstInputPassword.value)) {
+      checkSpanUpper.innerText = "✅";
+    }
+    if (checkNumber(firstInputPassword.value)) {
+      checkSpanNumber.innerText = "✅";
+    }
+    if (checkLength(firstInputPassword.value)) {
+      checkSpanLength.innerText = "✅";
+    }
+  }
+}
+
+/*    FUNCTIONS - for further tests
+========================================================================== */
+
+function checkUppercase(string) {
+  return /[A-Z]/.test(string);
+}
+
+function checklowercase(string) {
+  return /[a-z]/.test(string);
+}
+
+function checkNumber(string) {
+  return /[0-9]/.test(string);
+}
+
+function checkLength(string) {
+  if (string.length >= 10) {
+    return true;
+  }
+}
