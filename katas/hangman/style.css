@@ -1,0 +1,38 @@
+body {
+  font-family: monospace;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+}
+header {
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .active a,
+  .fails a,
+  .new a {
+    color: white;
+    padding: 1rem;
+    border: 2px solid white;
+  }
+}
+main {
+  .output {
+    text-align: center;
+  }
+  .keyboard {
+    background: #444;
+    text-align: center;
+  }
+}
+
+label {
+  display: inline;
+}
+
+button {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+}
