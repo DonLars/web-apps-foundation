@@ -4,10 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hangman</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
-    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -19,8 +15,12 @@
       <section class="new"><button>New Game</button></section>
     </header>
     <main>
-      <section class="output">_ _ _ _</section>
-      <section class="keyboard">Keyboard</section>
+      <section class="output"></section>
+      <section class="keyboard">
+        <ul>
+          <!-- dynamic content -->
+        </ul>
+      </section>
     </main>
 
     <script src="script.js"></script>
