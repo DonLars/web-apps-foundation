@@ -6,13 +6,15 @@ Each letter can only be picked once
 Picked letters are disabled on the displayed keyboard
 Add a "New Game" button that will pick a new word and resets the failed attempts
 If you have 10 failes (failed attempts picking a letter) the game is over
+    
 */
 
 // state
 
 const state = {
-  status: "active", // active / fail
+  status: ["active", "win", "lose"],
   fails: 0, // 0 from 10
+  tries: 10,
   words: [
     "Github",
     "Markdown",
@@ -28,6 +30,12 @@ const state = {
   currentWord: "",
   guessedLetters: [],
 };
+
+// Variables for status, output
+const htmlStatus = document.querySelector(".status");
+const htmlOutput = document.querySelector(".output");
+const htmlFalse = document.querySelector(".fails-count");
+const htmlNewBtn = document.querySelector(".new button");
 
 const letters = [
   ["_", "A"],
@@ -62,13 +70,14 @@ const letters = [
 ========================================================================== */
 
 function reset() {
-  state.status = "active";
   state.fails = 0;
   state.guessedLetters = [];
   // generate random word
   const roundWord = Math.ceil(Math.random() * state.words.length);
   state.currentWord = state.words.at(roundWord - 1).toUpperCase();
-  console.log(state.currentWord, state.status, state.fails);
+  //  console.log(state.currentWord, state.status, state.fails);
+  htmlStatus.textContent = state.status[0];
+  htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
 }
 
 /*    GENERATE KEYBOARD TEMPLATE
@@ -96,32 +105,33 @@ for (const letter of letters) {
 ========================================================================== */
 
 function getCurrentWordStatus() {
-  let status = "";
+  let currWord = "";
 
   for (let i = 0; i < state.currentWord.length; i++) {
     const currentLetter = state.currentWord[i];
     if (state.guessedLetters.includes(currentLetter)) {
-      status += currentLetter + " ";
+      currWord += currentLetter;
     } else {
-      status += "_ ";
+      currWord += "_";
     }
   }
-  return status.trim(); // Remove trailing space
+  return currWord.split("").join(" ").trim();
 }
-
-// status = if reset failed > 10 change to FAIL, Game OVER
 
 /*    RENDER
 ========================================================================== */
 
 function render() {
-  const output = document.querySelector(".output");
-  output.textContent = getCurrentWordStatus(); // Clear the output before rendering
-  return output;
+  htmlOutput.textContent = getCurrentWordStatus(); // Clear the output before rendering
+  return htmlOutput;
 }
 
 /*    EVENT LISTENER for button click
 ========================================================================== */
+
+// ul.addEventListener("keydown", function (event) {
+//     console.log(event.key + " " + event.metaKey);
+//   });
 
 ul.addEventListener("click", function (event) {
   console.log(event);
@@ -129,19 +139,53 @@ ul.addEventListener("click", function (event) {
     const guessedLetter = event.target.textContent;
     state.guessedLetters.push(guessedLetter);
 
-    console.log(guessedLetter);
-
+    // deactivate button
+    event.target.className = "hidden";
     // Check if guessed letter is in the current word
     if (!state.currentWord.includes(guessedLetter)) {
-      state.fails++;
       // Handle game over logic if fails reach 10
+      if (state.fails < 10) {
+        state.fails++;
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+
+        // if won
+
+        let currentWordUnderscore = state.currentWord
+          .split("")
+          .join(" ")
+          .trim();
+
+        if (htmlOutput.textContent == currentWordUnderscore) {
+          htmlStatus.textContent = "WIN";
+          console.log(state.status[1]);
+        }
+      } else {
+        htmlStatus.textContent = "LOSE";
+        console.log(state.status[2]);
+      }
     }
+
+    console.log(
+      state.currentWord,
+      state.guessedLetters,
+      htmlOutput.textContent,
+      state.status[0],
+      state.fails
+    );
 
     render(); // Update the displayed word
   }
 });
 
-// Initial setup
+/*    EVENT LISTENER for New Game / Reset
+========================================================================== */
+htmlNewBtn.addEventListener("click", function () {
+  reset();
+  render();
+});
+
+/*    Initialize
+========================================================================== */
 
 reset();
 render();
