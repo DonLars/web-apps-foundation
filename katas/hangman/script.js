@@ -8,8 +8,7 @@ const state = {
   tries: 10,
   currentWord: "",
   words: [
-    "A",
-    /*    "Github",
+    "Github",
     "Markdown",
     "Currentcolor",
     "Cascade",
@@ -18,7 +17,7 @@ const state = {
     "Transition",
     "Datatype",
     "Condition",
-    "Object",*/
+    "Object",
   ],
   guessedLetters: [],
   letters: [
@@ -137,37 +136,52 @@ function render() {
   return htmlOutput;
 }
 
-/*    EVENT LISTENER for button click
+/*    EVENT LISTENER for mouse
 ========================================================================== */
-
-// ul.addEventListener("keydown", function (event) {
-//     console.log(event.key + " " + event.metaKey);
-//   });
 
 ul.addEventListener("click", function (event) {
   console.log(event);
   if (event.target.tagName === "BUTTON") {
     const guessedLetter = event.target.textContent;
-
-    // Check if guessed letter is in the current word
-    if (!state.currentWord.includes(guessedLetter)) {
-      // Handle game over logic if fails reach 10
-      if (state.fails < 10) {
-        state.fails++;
-        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
-      }
-    }
-
-    // deactivate button
-    event.target.className = "hidden";
-    state.guessedLetters.push(guessedLetter);
-
-    render(); // Update the displayed word
-
-    // TEST IF WIN OR LOSE
-    checkForWinOrLose();
+    handleGuess(guessedLetter);
   }
 });
+
+/*    EVENT-LISTENER for keys
+  ========================================================================== */
+document.addEventListener("keydown", function (event) {
+  console.log(event);
+  const guessedLetter = event.key.toUpperCase();
+  handleGuess(guessedLetter);
+});
+
+/*    FUNCTION - handle guessed letters
+  ========================================================================== */
+function handleGuess(guessedLetter) {
+  // Überprüfen, ob der geratene Buchstabe im aktuellen Wort ist
+  if (!state.currentWord.includes(guessedLetter)) {
+    // Spiel-Over-Logik behandeln, wenn Fehlversuche 10 erreichen
+    if (state.fails < 10) {
+      state.fails++;
+      htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+    }
+  }
+
+  // Den entsprechenden Buchstaben deaktivieren
+  const button = document.querySelector(
+    `.${guessedLetter.toLowerCase()} button`
+  );
+  if (button) {
+    button.className = "hidden";
+  }
+
+  state.guessedLetters.push(guessedLetter);
+
+  render(); // Rendering
+
+  // TEST IF WIN OR LOSE
+  checkForWinOrLose();
+}
 
 /*    FUNCTION WIN/LOSE
 ========================================================================== */

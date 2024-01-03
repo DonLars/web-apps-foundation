@@ -44,6 +44,9 @@ main {
     text-align: center;
     font-size: 4rem;
   }
+  .hangman {
+    padding: 2rem 0;
+  }
   .keyboard {
     padding: 2rem 0;
     background: #444;
@@ -60,6 +63,8 @@ button {
   text-transform: uppercase;
   background: black;
   color: white;
+  border-radius: 0.5rem;
+
   border: 0;
   cursor: pointer;
 }
