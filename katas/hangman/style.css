@@ -16,6 +16,20 @@ header {
   justify-content: space-around;
   align-items: center;
 
+  .status {
+    color: white;
+    &.win {
+      color: green;
+      scale: 1.5;
+      animation: blink 0.5s step-start infinite;
+    }
+    &.lose {
+      color: red;
+      scale: 1.5;
+      animation: blink 0.5s step-start infinite;
+    }
+  }
+
   .active a,
   .fails a,
   .new a {
@@ -68,19 +82,32 @@ ul {
       color: white;
       cursor: pointer;
       padding: 1rem;
-    
+
       &:hover {
         background: dodgerblue;
         border: 2px solid white;
         color: white;
-      
-    
+      }
     }
   }
 }
 
 .hidden {
   opacity: 0.2;
-  pointer-events: none; 
-cursor: none;
+  pointer-events: none;
+  cursor: none;
+}
+
+/* Animations */
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
