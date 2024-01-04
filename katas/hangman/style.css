@@ -103,6 +103,160 @@ ul {
   cursor: none;
 }
 
+/* Hangman */
+
+.hangman {
+  width: 350px;
+  height: 250px;
+  margin: 0 auto;
+  position: relative;
+  & > div {
+    position: relative;
+    /*visibility: hidden;*/
+  }
+  &.hang1 {
+    .pole {
+      visibility: visible !important;
+    }
+  }
+  &.hang2 {
+    .shaft {
+      visibility: visible !important;
+    }
+  }
+  &.hang3 {
+    .rope {
+      visibility: visible !important;
+    }
+  }
+  &.hang4 {
+    .man {
+      visibility: visible !important;
+    }
+  }
+
+  .base {
+    position: absolute;
+    bottom: 0;
+    visibility: visible;
+    height: 4%;
+    width: 30%;
+    background: currentColor;
+
+    &:after {
+      content: "";
+      width: 50%;
+      height: 50%;
+      background: currentColor;
+      position: absolute;
+      bottom: 100%;
+      left: 25%;
+    }
+  }
+  .pole {
+    position: absolute;
+    bottom: 6%;
+    height: 100%;
+    width: 2%;
+    background: currentColor;
+    margin-left: 14%;
+  }
+  .shaft {
+    position: absolute;
+    left: 5%;
+    bottom: 100%;
+    height: 2%;
+    width: 80%;
+    background: currentColor;
+  }
+  .rope {
+    position: absolute;
+    bottom: 85%;
+    left: 65%;
+    height: 15%;
+    width: 1%;
+    background: currentColor;
+  }
+  .man {
+    position: relative;
+    left: 45%;
+    bottom: 0%;
+    height: 80%;
+    width: 40%;
+  }
+  .head {
+    position: absolute;
+    left: 15%;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-left: 25px;
+    background: currentColor;
+    &:after {
+      height: 100px;
+      width: 2px;
+      top: 50px;
+      left: 50px;
+    }
+  }
+  .body {
+    position: absolute;
+    bottom: 25%;
+    left: 28%;
+    width: 40%;
+    border-radius: 0.75rem;
+    height: 50%;
+    background-color: currentColor;
+  }
+
+  .left-hand {
+    position: absolute;
+    bottom: 70%;
+    left: -13%;
+    background: currentColor;
+    height: 5%;
+    width: 45%;
+    border-radius: 0.5rem;
+    transform: rotate(-55deg);
+    transform-origin: 100% 0%;
+  }
+  .right-hand {
+    position: absolute;
+    bottom: 44%;
+    left: 45%;
+    background: currentColor;
+    height: 5%;
+    width: 45%;
+    border-radius: 0.5rem;
+    transform: rotate(55deg);
+    transform-origin: 100% 0%;
+  }
+
+  .left-leg {
+    position: absolute;
+    bottom: 30%;
+    left: -14%;
+    background: currentColor;
+    height: 5%;
+    width: 45%;
+    border-radius: 0.5rem;
+    transform: rotate(-70deg);
+    transform-origin: 100% 0%;
+  }
+
+  .right-leg {
+    position: absolute;
+    bottom: 0%;
+    left: 35%;
+    background: currentColor;
+    height: 5%;
+    width: 45%;
+    border-radius: 0.5rem;
+    transform: rotate(70deg);
+    transform-origin: 100% 0%;
+  }
+}
+
 /* Animations */
 
 @keyframes blink {
