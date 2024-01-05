@@ -1,5 +1,21 @@
 "use strict";
 
+function loadWord() {
+  fetch("https://random-word-api.herokuapp.com/word")
+    .then((response) => response.json())
+    .then((data) => {
+      const htmlOutput = document.querySelector(".output");
+      //console.log(data[0]);
+      state.currentWord = data[0].toUpperCase();
+      render();
+    })
+    .catch((error) => {
+      console.error("Error displaying the word:", error);
+    });
+}
+
+document.querySelector(".random button").addEventListener("click", loadWord);
+
 // state
 
 const state = {
@@ -7,6 +23,7 @@ const state = {
   fails: 0, // 0 from 10
   tries: 10,
   currentWord: "",
+  //fetchWord: data;
   words: [
     "Github",
     "Markdown",

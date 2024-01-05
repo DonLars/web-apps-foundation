@@ -110,9 +110,10 @@ ul {
   height: 250px;
   margin: 0 auto;
   position: relative;
+  display: none;
   & > div {
     position: relative;
-    /*visibility: hidden;*/
+    visibility: hidden;
   }
   &.hang1 {
     .pole {
