@@ -73,6 +73,17 @@ const htmlOutput = document.querySelector(".output");
 const htmlFalse = document.querySelector(".fails-count");
 const htmlNewBtn = document.querySelector(".new button");
 
+const htmlBase = document.querySelector(".hangman .base");
+const htmlPole = document.querySelector(".hangman .pole");
+const htmlShaft = document.querySelector(".hangman .shaft");
+const htmlRope = document.querySelector(".hangman .rope");
+const htmlHead = document.querySelector(".hangman .head");
+const htmlBody = document.querySelector(".hangman .body");
+const htmlLefthand = document.querySelector(".hangman .left-hand");
+const htmlRighthand = document.querySelector(".hangman .right-hand");
+const htmlLeftleg = document.querySelector(".hangman .left-leg");
+const htmlRightleg = document.querySelector(".hangman .right-leg");
+
 /*    RESET (new game, random word, reset fails)
 ========================================================================== */
 
@@ -175,16 +186,81 @@ document.addEventListener("keydown", function (event) {
 /*    FUNCTION - handle guessed letters
   ========================================================================== */
 function handleGuess(guessedLetter) {
-  // Überprüfen, ob der geratene Buchstabe im aktuellen Wort ist
+  // Test if guessedLetter is a-z
+  if (!/^[a-zA-Z]$/.test(guessedLetter)) {
+    console.log("Invalid input. Please only enter letters between a-z");
+    return;
+  }
+
+  // Test, if guessed Letter is in the searched word
   if (!state.currentWord.includes(guessedLetter)) {
-    // Spiel-Over-Logik behandeln, wenn Fehlversuche 10 erreichen
+    // If less than 10 tries
+
+    switch (state.fails) {
+      case 0:
+        state.fails++;
+        htmlBase.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      case 1:
+        state.fails++;
+        htmlPole.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      case 2:
+        state.fails++;
+        htmlShaft.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      case 3:
+        state.fails++;
+        htmlRope.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      case 4:
+        state.fails++;
+        htmlHead.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      case 5:
+        state.fails++;
+        htmlBody.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      case 6:
+        state.fails++;
+        htmlLefthand.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      case 7:
+        state.fails++;
+        htmlRighthand.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      case 8:
+        state.fails++;
+        htmlLeftleg.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      case 9:
+        state.fails++;
+        htmlRightleg.style.visibility = "visible";
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+        break;
+      default:
+        state.fails++;
+        htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
+      // code block
+    }
+
+    /*  --- ORGINAL without hangman visualisation ---
     if (state.fails < 10) {
       state.fails++;
       htmlFalse.textContent = ` ${state.fails} / ${state.tries}`;
-    }
+    }*/
   }
 
-  // Den entsprechenden Buchstaben deaktivieren
+  // deactivate pressed letter
   const button = document.querySelector(
     `.${guessedLetter.toLowerCase()} button`
   );
