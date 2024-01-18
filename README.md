@@ -1,7 +1,5 @@
-## This is the WebApp part from Coding Bootcamp Europe
+# Webapps Foundation
+## Coding bootcamp
 
-First WebApp project: https://donlars.github.io/webapps-foundation/webapp-basics/lightswitch/
-
-### Projects:
-
+* First WebApp project: https://donlars.github.io/webapps-foundation/webapp-basics/lightswitch/
 * Hangman: https://donlars.github.io/webapps-foundation/katas/hangman
